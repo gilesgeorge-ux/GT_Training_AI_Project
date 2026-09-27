@@ -1,0 +1,100 @@
+{
+  "target": "Performance Tier (derived from five input measurements)",
+  "target_type": "deterministic illustrative rule, not independently measured ground truth",
+  "features": [
+    "Signal Strength (dBm)",
+    "Download Speed (Mbps)",
+    "Upload Speed (Mbps)",
+    "Latency (ms)",
+    "Jitter (ms)"
+  ],
+  "score_weights": {
+    "download": 0.3,
+    "upload": 0.15,
+    "latency": 0.25,
+    "jitter": 0.15,
+    "signal": 0.15
+  },
+  "thresholds": {
+    "limited_below": 0.45,
+    "strong_at_or_above": 0.6
+  },
+  "split": {
+    "train_rows": 40000,
+    "test_rows": 10000,
+    "test_fraction": 0.2,
+    "stratified": true,
+    "random_state": 42
+  },
+  "model": "DecisionTreeClassifier(max_depth=8, min_samples_leaf=10, random_state=42)",
+  "baseline_accuracy": 0.4612,
+  "test_accuracy": 0.8445,
+  "balanced_accuracy": 0.842059,
+  "class_counts": {
+    "Standard": 23060,
+    "Strong": 16100,
+    "Limited": 10840
+  },
+  "confusion_labels": [
+    "Limited",
+    "Standard",
+    "Strong"
+  ],
+  "confusion_matrix": [
+    [
+      1783,
+      385,
+      0
+    ],
+    [
+      324,
+      3896,
+      392
+    ],
+    [
+      0,
+      454,
+      2766
+    ]
+  ],
+  "classification_report": {
+    "Limited": {
+      "precision": 0.8462268628381585,
+      "recall": 0.8224169741697417,
+      "f1-score": 0.8341520467836258,
+      "support": 2168.0
+    },
+    "Standard": {
+      "precision": 0.8228088701161563,
+      "recall": 0.8447528187337381,
+      "f1-score": 0.8336364608965443,
+      "support": 4612.0
+    },
+    "Strong": {
+      "precision": 0.8758708043065231,
+      "recall": 0.8590062111801242,
+      "f1-score": 0.8673565380997178,
+      "support": 3220.0
+    },
+    "accuracy": 0.8445,
+    "macro avg": {
+      "precision": 0.8483021790869459,
+      "recall": 0.842058668027868,
+      "f1-score": 0.8450483485932959,
+      "support": 10000.0
+    },
+    "weighted avg": {
+      "precision": 0.8449718337475846,
+      "recall": 0.8445,
+      "f1-score": 0.8446061047762854,
+      "support": 10000.0
+    }
+  },
+  "feature_importances": {
+    "Signal Strength (dBm)": 0.11191096025473111,
+    "Download Speed (Mbps)": 0.3487632355640187,
+    "Upload Speed (Mbps)": 0.15214403953272893,
+    "Latency (ms)": 0.24077128671020254,
+    "Jitter (ms)": 0.1464104779383187
+  }
+}
